@@ -1,0 +1,13 @@
+{
+  "name": "jabroni-skills",
+  "owner": {
+    "name": "therealvio"
+  },
+  "plugins": [
+    {
+      "name": "jabroni",
+      "source": "./plugins/jabroni",
+      "description": "Personal collection of Claude skills"
+    }
+  ]
+}

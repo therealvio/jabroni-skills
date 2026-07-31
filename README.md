@@ -3,19 +3,19 @@ Yet another Claude skills repo. Weow.
 
 Personal Claude Code plugin marketplace. One plugin (`jabroni-contraptions`) bundles all skills under `plugins/jabroni-contraptions/skills/`.
 
-## Install (local)
+## Install
 
 Inside a `claude` session:
 
 ```
-/plugin marketplace add /Users/vio/Documents/source/jabroni-skills
+/plugin marketplace add therealvio/jabroni-skills
 /plugin install jabroni-contraptions@jabroni-skills
 ```
 
 From a shell, outside a session:
 
 ```
-claude plugin marketplace add /Users/vio/Documents/source/jabroni-skills
+claude plugin marketplace add therealvio/jabroni-skills
 claude plugin install jabroni-contraptions@jabroni-skills
 ```
 

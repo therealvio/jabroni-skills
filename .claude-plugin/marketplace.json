@@ -5,8 +5,8 @@
   },
   "plugins": [
     {
-      "name": "jabroni",
-      "source": "./plugins/jabroni",
+      "name": "jabroni-contraptions",
+      "source": "./plugins/jabroni-contraptions",
       "description": "Personal collection of Claude skills"
     }
   ]

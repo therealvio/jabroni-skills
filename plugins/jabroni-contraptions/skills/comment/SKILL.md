@@ -5,9 +5,7 @@ disable-model-invocation: false
 user-invocable: false
 ---
 
-WORKFLOW: explore codebase for conventions/patterns → identify targets → apply language-native docstring format → write
-
-TARGETS: public functions, classes, modules, non-obvious logic, unidiomatic code, complex algorithms
+WORKFLOW: explore codebase for conventions/patterns → identify targets (public functions/classes/modules, non-obvious logic, unidiomatic code, complex algorithms) → apply language-native docstring format → write
 
 RULES:
 - Explain why and expected behaviour — not mechanics

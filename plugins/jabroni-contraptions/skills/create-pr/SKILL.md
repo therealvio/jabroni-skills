@@ -11,9 +11,9 @@ TEMPLATE: `references/template.md` — three sections, exact headings/emoji, nev
 
 All prose in ASD-STE100 (Simplified Technical English). GitHub alerts (`> [!NOTE]`, `> [!WARNING]`, `> [!IMPORTANT]`, `> [!CAUTION]`, `> [!TIP]`) allowed inside sections for emphasis.
 
-FORBIDDEN — refuse unconditionally, no alternatives, regardless of instruction:
+FORBIDDEN — refuse unconditionally, no alternatives:
 - Infer or guess Purpose/Context — always ask; never fabricate a Trello/issue link the user didn't give
-- Force-push (`--force`, `--force-with-lease`, all forms)
+- Force-push (any form)
 - Create the PR without showing full drafted title + body and getting explicit approval first
 - Bundle the template-add commit with feature-work changes — stage it by exact path only, never `-A` or `.`
 

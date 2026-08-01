@@ -23,6 +23,7 @@ The skill auto-triggers when you ask to add comments, document code, or add non-
 | Unidiomatic code | If the code would surprise a reader, explain why it's written that way |
 | External references | Link to specs, RFCs, or relevant issues where they add real context |
 | Brevity | One clear sentence beats a vague paragraph |
+| Simplified Technical English | Comment text follows ASD-STE100: short sentences, one idea each, active voice, approved words. Code identifiers and technical terms stay exact |
 
 ## Bug fix commentary
 

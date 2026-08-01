@@ -16,6 +16,7 @@ RULES:
 - Explain unidiomatic code; link external references (specs, RFCs, issues) where useful
 - Bug fixes: add commentary to the regression test case, not the source fix
 - Brief, focused — one clear sentence beats a vague paragraph
+- Write comment text in Simplified Technical English (ASD-STE100): short sentences, one idea per sentence, active voice, approved words only. Drop articles and filler where the language allows it. Keep code identifiers and technical terms exact.
 
 FORBIDDEN:
 - Restate names ("i is the index", "getName returns the name")

@@ -1,0 +1,7 @@
+{
+  "name": "create-pr",
+  "description": "Draft and create a GitHub PR using the team template, via gh-axi",
+  "author": {
+    "name": "therealvio"
+  }
+}

@@ -5,9 +5,19 @@
   },
   "plugins": [
     {
-      "name": "jabroni-contraptions",
-      "source": "./plugins/jabroni-contraptions",
-      "description": "Personal collection of Claude skills"
+      "name": "comment",
+      "source": "./plugins/comment",
+      "description": "Add or improve code comments and docstrings using intent-first, language-native conventions"
+    },
+    {
+      "name": "commit",
+      "source": "./plugins/commit",
+      "description": "Create git commits following Conventional Commits specification"
+    },
+    {
+      "name": "create-pr",
+      "source": "./plugins/create-pr",
+      "description": "Draft and create a GitHub PR using the team template, via gh-axi"
     }
   ]
 }

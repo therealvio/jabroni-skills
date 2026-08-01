@@ -1,5 +1,6 @@
 {
   "name": "commit",
+  "displayName": "Jabroni Commit",
   "description": "Create git commits following Conventional Commits specification",
   "author": {
     "name": "therealvio"

@@ -25,11 +25,11 @@ claude plugin install comment@jabroni-skills
 
 ## Available plugins
 
-| Plugin | Skill |
-|--------|-------|
-| `comment` | Add or improve code comments and docstrings using intent-first, language-native conventions |
-| `commit` | Create git commits following Conventional Commits specification |
-| `create-pr` | Draft and create a GitHub PR using the team template, via gh-axi |
+| Plugin      | Skill                                                                                       |
+| ----------- | ------------------------------------------------------------------------------------------- |
+| `comment`   | Add or improve code comments and docstrings using intent-first, language-native conventions |
+| `commit`    | Create git commits following Conventional Commits specification                             |
+| `create-pr` | Draft and create a GitHub PR using a template, via gh-axi                                   |
 
 ## Add a skill
 

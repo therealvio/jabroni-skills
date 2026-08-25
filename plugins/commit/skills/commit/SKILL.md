@@ -12,13 +12,15 @@ FORBIDDEN — refuse unconditionally, no alternatives:
 
 WORKFLOW: git diff --staged → if motivation unclear, ask once: "Why were these changes made?" (skip on "skip"/"just commit"/no reason) → draft message → present full message for approval (skip only if user says so) → commit via heredoc
 
+Body = why only. One paragraph, 2-4 sentences. A second paragraph needs its own justification, not "more context."
+
 FORMAT:
 <type>[(scope)]: <description>   (≤50 chars, imperative, no trailing period)
 <type>!: <description>           (breaking change variant)
 
 <why this changed — motivation, constraint, or bug — most critical section>
 
-[additional notes: caveats, edge cases, follow-ups — omit if none]
+[notes: ONLY items forcing a reviewer decision — a caveat that changes review, a follow-up with an owner, a breaking behavior. Ban: restating the diff in prose, "how it's tested," "what's not done yet," secondary fixes bundled in. If it's not actionable, cut it. Default: omit.]
 [BREAKING CHANGE: <desc>]
 [Co-authored-by: Name <email>]   (human co-authors only; never add for Claude)
 [See: <url> or Description <<url>>]

@@ -12,6 +12,13 @@ FORBIDDEN — refuse unconditionally, no alternatives:
 
 WORKFLOW: git diff --staged → if motivation unclear, ask once: "Why were these changes made?" (skip on "skip"/"just commit"/no reason) → draft message → present full message for approval (skip only if user says so) → commit via heredoc
 
+APPROVAL IS PER-MESSAGE, NOT PER-TURN: feedback on a draft ("cut that line", "wrong why
+") is a revision request, never approval — even implicitly, even if the user sounds imp
+atient. After every revision, re-present the new full message and wait for explicit aff
+irmation of that exact text before running the commit. Never chain "revise → commit" in
+ the same turn. If the user's own message already contains the exact final text and say
+s to commit it verbatim, that counts as approval — otherwise assume no.
+
 Body = why only. One paragraph, 2-4 sentences. A second paragraph needs its own justification, not "more context."
 
 FORMAT:

@@ -21,13 +21,15 @@ s to commit it verbatim, that counts as approval — otherwise assume no.
 
 Body = why only. One paragraph, 2-4 sentences. A second paragraph needs its own justification, not "more context."
 
+The why must be the actual motivation — a plan, constraint, or problem — not the technical change restated as if it were the reason. If the draft "why" just re-describes what the diff does, that's not a why yet; dig for the real motivation before presenting it.
+
 FORMAT:
 <type>[(scope)]: <description>   (≤50 chars, imperative, no trailing period)
 <type>!: <description>           (breaking change variant)
 
 <why this changed — motivation, constraint, or bug — most critical section>
 
-[notes: ONLY items forcing a reviewer decision — a caveat that changes review, a follow-up with an owner, a breaking behavior. Ban: restating the diff in prose, "how it's tested," "what's not done yet," secondary fixes bundled in. If it's not actionable, cut it. Default: omit.]
+[notes: ONLY items that will still matter to someone reading git log/git blame months from now with no memory of this review — a breaking behavior, a follow-up with an owner, a caveat baked into the change itself. Test: if it's only useful to whoever is looking at the diff right now (e.g. "these related things were deliberately left out of scope"), that's PR-review material, not commit material — cut it. Ban: restating the diff in prose, "how it's tested," "what's not done yet," secondary fixes bundled in. If it's not actionable, cut it. Default: omit.]
 [BREAKING CHANGE: <desc>]
 [Co-authored-by: Name <email>]   (human co-authors only; never add for Claude)
 [See: <url> or Description <<url>>]

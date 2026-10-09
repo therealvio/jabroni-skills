@@ -5,11 +5,6 @@
   },
   "plugins": [
     {
-      "name": "comment",
-      "source": "./plugins/comment",
-      "description": "Add or improve code comments and docstrings using intent-first, language-native conventions"
-    },
-    {
       "name": "commit",
       "source": "./plugins/commit",
       "description": "Create git commits following Conventional Commits specification"

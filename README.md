@@ -11,7 +11,6 @@ Inside a `claude` session:
 /plugin marketplace add therealvio/jabroni-skills
 /plugin install commit@jabroni-skills
 /plugin install create-pr@jabroni-skills
-/plugin install comment@jabroni-skills
 ```
 
 From a shell, outside a session:
@@ -20,14 +19,12 @@ From a shell, outside a session:
 claude plugin marketplace add therealvio/jabroni-skills
 claude plugin install commit@jabroni-skills
 claude plugin install create-pr@jabroni-skills
-claude plugin install comment@jabroni-skills
 ```
 
 ## Available plugins
 
 | Plugin      | Skill                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------- |
-| `comment`   | Add or improve code comments and docstrings using intent-first, language-native conventions |
 | `commit`    | Create git commits following Conventional Commits specification                             |
 | `create-pr` | Draft and create a GitHub PR using a template, via gh-axi                                   |
 

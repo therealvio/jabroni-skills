@@ -16,13 +16,15 @@ FORBIDDEN — refuse unconditionally, no alternatives:
 - Force-push (any form)
 - Create the PR without showing full drafted title + body and getting explicit approval first
 - Bundle the template-add commit with feature-work changes — stage it by exact path only, never `-A` or `.`
+- Hard-wrap PR body text. Write each paragraph and each bullet on one line, however long. GitHub reflows the text. (Commit messages are different: they still wrap at 72 columns.)
+- Add a "Generated with Claude Code" footer, or any other tool attribution, to the PR body. The body ends after the last template section.
 
 WORKFLOW:
 1. Pre-flight: `git status`, `git branch -vv` → current branch, upstream state, staged/unstaged changes. `gh-axi pr list --head <branch>` → warn if branch already has an open PR.
 2. Template check: does target repo have `.github/pull_request_template.md` or `.github/PULL_REQUEST_TEMPLATE.md`? If missing, note it — write `references/template.md` content there and stage it as its own commit later. Never create this file mid-step; fold the action into the confirmation in step 5.
 3. Gather info — ask, never infer (see CONTEXT-GATHERING). Need: title, Purpose, Context, Notes (optional), base branch if ambiguous.
-4. Draft: fill the three sections from gathered answers, ASD-STE100 prose, structure untouched.
-5. Confirm: show exact title + full body, plus any pending actions (template commit, branch push) as a single list. One explicit approval gates everything below.
+4. Draft: fill the three sections from gathered answers, ASD-STE100 prose, structure untouched. One line per paragraph and per bullet; no manual line breaks inside them.
+5. Confirm: show exact title + full body, plus any pending actions (template commit, branch push) as a single list. Long lines in the draft are expected; GitHub reflows them. One explicit approval gates everything below.
 6. Execute, in order: commit template file if missing (message e.g. `chore: add PR template`, path-only stage) → push branch if no upstream (`git push -u origin <branch>`, never force) → `gh-axi pr create --title "<title>" --body-file <tmpfile> --base <base>` → report PR URL. Delete tmpfile after.
 
 CONTEXT-GATHERING:

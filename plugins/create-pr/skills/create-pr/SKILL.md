@@ -17,6 +17,7 @@ FORBIDDEN — refuse unconditionally, no alternatives:
 - Create the PR without showing full drafted title + body and getting explicit approval first
 - Bundle the template-add commit with feature-work changes — stage it by exact path only, never `-A` or `.`
 - Hard-wrap PR body text. Write each paragraph and each bullet on one line, however long. GitHub reflows the text. (Commit messages are different: they still wrap at 72 columns.)
+- Add a "Generated with Claude Code" footer, or any other tool attribution, to the PR body. The body ends after the last template section.
 
 WORKFLOW:
 1. Pre-flight: `git status`, `git branch -vv` → current branch, upstream state, staged/unstaged changes. `gh-axi pr list --head <branch>` → warn if branch already has an open PR.

@@ -1,7 +1,9 @@
 # jabroni-skills
 Yet another Claude skills repo. Weow.
 
-Personal Claude Code plugin marketplace. Each skill is its own plugin under `plugins/jabroni-<skill-name>/`, so you install only what you need.
+These are personal curated skills. Feel free to use, contribute, or fork, I don't mind!
+
+Each skill is it's own plugin, so you take what you need.
 
 ## Install
 
@@ -23,10 +25,10 @@ claude plugin install jabroni-create-pr@jabroni-skills
 
 ## Available plugins
 
-| Plugin              | Skill                                                            |
-| ------------------- | ---------------------------------------------------------------- |
-| `jabroni-commit`    | Create git commits following Conventional Commits specification      |
-| `jabroni-create-pr` | Draft and create a GitHub PR using a template, via gh-axi        |
+| Plugin              | Skill                                                           |
+| ------------------- | --------------------------------------------------------------- |
+| `jabroni-commit`    | Create git commits following Conventional Commits specification |
+| `jabroni-create-pr` | Draft and create a GitHub PR using a template, via gh-axi       |
 
 ## Add a skill
 

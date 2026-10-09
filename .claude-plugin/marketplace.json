@@ -5,13 +5,13 @@
   },
   "plugins": [
     {
-      "name": "commit",
-      "source": "./plugins/commit",
+      "name": "jabroni-commit",
+      "source": "./plugins/jabroni-commit",
       "description": "Create git commits following Conventional Commits specification"
     },
     {
-      "name": "create-pr",
-      "source": "./plugins/create-pr",
+      "name": "jabroni-create-pr",
+      "source": "./plugins/jabroni-create-pr",
       "description": "Draft and create a GitHub PR using the team template, via gh-axi"
     }
   ]

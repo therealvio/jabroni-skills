@@ -5,12 +5,14 @@ A Claude Code skill for creating well-structured git commits. Enforces Conventio
 ## Usage
 
 ```
-/commit
+/jabroni-commit:commit
 ```
 
-Claude will inspect staged changes, infer motivation from conversation context, and produce a commit. The skill is **manual-only** (`disable-model-invocation: true`) — it never auto-triggers mid-workflow.
+Claude will inspect staged changes, infer motivation from conversation context, and produce a commit.
 
-## What it does
+The skill is also **agent-invocable** and replaces raw `git commit`. Agents and subagents that need to commit their own work must call this skill. In that mode no human is present, so the skill skips the motivation question and the approval step. It takes the why from the task context, stages only the files the task changed (by explicit path), and commits. To review commits first, tell Claude so and the interactive flow applies.
+
+## What it does (user-invoked)
 
 1. Runs `git diff --staged` to understand the change
 2. Uses conversation context, issue references, and surrounding code to determine *why* the change was made

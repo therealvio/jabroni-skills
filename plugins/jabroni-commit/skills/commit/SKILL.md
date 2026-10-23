@@ -1,8 +1,15 @@
 ---
 name: commit
-description: Create git commits following Conventional Commits specification. Explains why changes were made, not what changed. Use when committing code, writing a commit message, staging changes, or asked to "commit this".
-disable-model-invocation: true
+description: Create git commits following Conventional Commits specification. Explains why changes were made, not what changed. Use for EVERY git commit, instead of running `git commit` directly - when the user asks to commit, and when an agent or subagent needs to commit its own work.
 ---
+
+REPLACES RAW `git commit`: any agent that needs to commit MUST invoke this skill. Never run `git commit` directly.
+
+MODES:
+- User-invoked (`/jabroni-commit:commit`, or user asks to commit): full WORKFLOW below, including approval.
+- Agent-invoked (agent commits its own work as part of a task): no human in the loop. Never ask questions, never wait for approval. Take the why from the task, conversation, or plan in context. If no real why exists, state the problem the task set out to solve; never invent one. Commit immediately. Exception: user said earlier to review commits first → use the user-invoked flow.
+
+STAGING: if nothing is staged, stage only the files the current task changed, by explicit path (`git add <path>...`). Never `git add -A`, `git add .`, or `git add -u`. One logical change per commit; split if the diff mixes concerns.
 
 FORBIDDEN — refuse unconditionally, no alternatives:
 - git push (any form), gh pr create, git reset/clean/restore/checkout (any form)
@@ -10,9 +17,9 @@ FORBIDDEN — refuse unconditionally, no alternatives:
 - git commit --amend unless user explicitly requests it (never infer from same-file/scope changes)
 - Push/PR as default or follow-on action, even if user says "commit and push" — always human-initiated or a separate skill
 
-WORKFLOW: git diff --staged → if motivation unclear, ask once: "Why were these changes made?" (skip on "skip"/"just commit"/no reason) → draft message → present full message for approval (skip only if user says so) → commit via heredoc
+WORKFLOW (user-invoked): git diff --staged → if motivation unclear, ask once: "Why were these changes made?" (skip on "skip"/"just commit"/no reason) → draft message → present full message for approval (skip only if user says so) → commit via heredoc
 
-APPROVAL IS PER-MESSAGE, NOT PER-TURN: feedback on a draft ("cut that line", "wrong why
+APPROVAL (user-invoked only) IS PER-MESSAGE, NOT PER-TURN: feedback on a draft ("cut that line", "wrong why
 ") is a revision request, never approval — even implicitly, even if the user sounds imp
 atient. After every revision, re-present the new full message and wait for explicit aff
 irmation of that exact text before running the commit. Never chain "revise → commit" in

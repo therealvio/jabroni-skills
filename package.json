@@ -1,0 +1,11 @@
+{
+  "name": "jabroni-skills",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Personal curated agent skills for Claude Code and Pi",
+  "keywords": ["pi-package"],
+  "license": "MIT",
+  "pi": {
+    "skills": ["./plugins/*/skills"]
+  }
+}

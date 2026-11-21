@@ -1,14 +1,15 @@
 # Create PR Skill
 
-A Claude Code skill for drafting and opening GitHub pull requests with a structured, why-first body.
+An agent skill for drafting and opening GitHub pull requests with a structured, why-first body.
 
 ## Usage
 
-```
-/create-pr
-```
+| Harness     | Command                        |
+| ----------- | ------------------------------ |
+| Claude Code | `/jabroni-create-pr:create-pr` |
+| Pi          | `/skill:create-pr`             |
 
-Also auto-triggers on natural language ("open a PR for this", "create a pull request"). Claude asks for the missing pieces, drafts the PR body, shows it to you, and only opens the PR once you approve.
+Also auto-triggers on natural language ("open a PR for this", "create a pull request"). The agent asks for the missing pieces, drafts the PR body, shows it to you, and only opens the PR once you approve.
 
 ## What it does
 
@@ -58,6 +59,6 @@ Same reasoning as the [commit skill](../commit/README.md): the diff already show
 
 ## Files
 
-- `SKILL.md` — machine-readable instructions loaded into Claude's context
+- `SKILL.md` — machine-readable instructions loaded into the agent's context
 - `references/template.md` — the verbatim PR template; also written into a target repo's `.github/pull_request_template.md` when missing
 - `README.md` — this file

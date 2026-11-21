@@ -14,12 +14,14 @@ Also auto-triggers on natural language ("open a PR for this", "create a pull req
 ## What it does
 
 1. Checks the current branch, upstream state, and whether an open PR already exists for it
-2. Checks whether the target repo has a GitHub PR template (`.github/pull_request_template.md`) — if missing, adds one as its own commit, kept separate from any feature-work changes
-3. Asks for the PR title, the *why* behind the change (Purpose), where the work comes from (Context), and any extra materials (Notes) — never guesses these
+2. Looks for the target repo's own PR template, in every place GitHub reads one from (`.github/`, the repo root, `docs/`, and the `PULL_REQUEST_TEMPLATE/` folders). If the repo has none, it checks the owner's `.github` repository, which GitHub uses as the default. If it finds one template, it uses it. If it finds several, it lists them and asks you which one. If it finds none, it uses the bundled template below and adds it to the repo as its own commit, separate from any feature-work changes
+3. Asks for the PR title and an answer for each template section. With the bundled template, that is the *why* behind the change (Purpose), where the work comes from (Context), and any extra materials (Notes). It never guesses these
 4. Fills in the template and shows you the full drafted title and body
-5. On approval: commits the template file if needed, pushes the branch if it has no upstream, then creates the PR via `gh-axi pr create`
+5. On approval: commits the bundled template file if the repo had none, pushes the branch if it has no upstream, then creates the PR via `gh-axi pr create`
 
-## PR template
+## Bundled PR template
+
+Used only when the target repo has no PR template, and the owner's `.github` repository has none either.
 
 ```markdown
 # Purpose :dart:
@@ -51,6 +53,7 @@ The skill will **never**:
 - Fabricate a Trello/issue link you didn't give it
 - Force-push, in any form
 - Create the PR without showing you the full draft and getting explicit approval
+- Replace a repo's own PR template with the bundled one, or add the bundled one next to it
 - Bundle the PR-template commit with feature-work changes
 
 ## Why why-first?
@@ -60,5 +63,5 @@ Same reasoning as the [commit skill](../commit/README.md): the diff already show
 ## Files
 
 - `SKILL.md` — machine-readable instructions loaded into the agent's context
-- `references/template.md` — the verbatim PR template; also written into a target repo's `.github/pull_request_template.md` when missing
+- `references/template.md` — the bundled PR template; written into a target repo's `.github/pull_request_template.md` when the repo has none
 - `README.md` — this file

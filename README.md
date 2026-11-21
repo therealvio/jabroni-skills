@@ -39,7 +39,19 @@ pi install git:github.com/therealvio/jabroni-skills
 - Install for one project only: add `-l` (writes `.pi/settings.json` instead of `~/.pi/agent/settings.json`).
 - Try it without installing: `pi -e git:github.com/therealvio/jabroni-skills`, or `pi -e ./` from a clone.
 
-To take only some skills, use the object form in settings and filter by path:
+### Load only some skills
+
+By default you get every skill. To pick, install as above, then open the settings file (`~/.pi/agent/settings.json`, or `.pi/settings.json` with `-l`). `pi install` adds the package as a plain string:
+
+```json
+{
+  "packages": ["git:github.com/therealvio/jabroni-skills"]
+}
+```
+
+Change that string to an object with a `skills` filter. Paths are relative to the repo root.
+
+Only the `commit` skill:
 
 ```json
 {
@@ -52,7 +64,20 @@ To take only some skills, use the object form in settings and filter by path:
 }
 ```
 
-Add one path per skill you want. Use `!plugins/jabroni-<skill-name>/**` to exclude a skill instead.
+Everything except `create-pr`:
+
+```json
+{
+  "packages": [
+    {
+      "source": "git:github.com/therealvio/jabroni-skills",
+      "skills": ["!plugins/jabroni-create-pr/**"]
+    }
+  ]
+}
+```
+
+To take more skills, add more paths to `skills`. Restart Pi or run `/reload` to apply.
 
 Manage it:
 

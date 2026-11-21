@@ -1,16 +1,17 @@
 # Commit Skill
 
-A Claude Code skill for creating well-structured git commits. Enforces Conventional Commits and a why-first body style.
+An agent skill for creating well-structured git commits. Enforces Conventional Commits and a why-first body style.
 
 ## Usage
 
-```
-/jabroni-commit:commit
-```
+| Harness     | Command                  |
+| ----------- | ------------------------ |
+| Claude Code | `/jabroni-commit:commit` |
+| Pi          | `/skill:commit`          |
 
-Claude will inspect staged changes, infer motivation from conversation context, and produce a commit.
+The agent will inspect staged changes, infer motivation from conversation context, and produce a commit.
 
-The skill is also **agent-invocable** and replaces raw `git commit`. Agents and subagents that need to commit their own work must call this skill. In that mode no human is present, so the skill skips the motivation question and the approval step. It takes the why from the task context, stages only the files the task changed (by explicit path), and commits. To review commits first, tell Claude so and the interactive flow applies.
+The skill is also **agent-invocable** and replaces raw `git commit`. Agents and subagents that need to commit their own work must call this skill. In that mode no human is present, so the skill skips the motivation question and the approval step. It takes the why from the task context, stages only the files the task changed (by explicit path), and commits. To review commits first, tell the agent so and the interactive flow applies.
 
 ## What it does (user-invoked)
 
@@ -65,5 +66,5 @@ Describing *what* changed is redundant — the diff already shows that. A commit
 
 ## Files
 
-- `SKILL.md` — machine-readable instructions loaded into Claude's context
+- `SKILL.md` — machine-readable instructions loaded into the agent's context
 - `README.md` — this file

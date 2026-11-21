@@ -1,11 +1,13 @@
 # jabroni-skills
-Yet another Claude skills repo. Weow.
+Yet another agent skills repo. Weow.
 
 These are personal curated skills. Feel free to use, contribute, or fork, I don't mind!
 
-Each skill is it's own plugin, so you take what you need.
+The skills work in [Claude Code](https://claude.com/claude-code) and [Pi](https://pi.dev). Same `SKILL.md` files, two ways to install.
 
-## Install
+## Claude Code
+
+Each skill is its own plugin, so you take what you need.
 
 Inside a `claude` session:
 
@@ -23,12 +25,78 @@ claude plugin install jabroni-commit@jabroni-skills
 claude plugin install jabroni-create-pr@jabroni-skills
 ```
 
-## Available plugins
+Run a skill with `/<plugin>:<skill>`, for example `/jabroni-commit:commit`.
 
-| Plugin              | Skill                                                           |
-| ------------------- | --------------------------------------------------------------- |
-| `jabroni-commit`    | Create git commits following Conventional Commits specification |
-| `jabroni-create-pr` | Draft and create a GitHub PR using a template, via gh-axi       |
+## Pi
+
+The repo is one Pi package that holds all the skills.
+
+```
+pi install git:github.com/therealvio/jabroni-skills
+```
+
+- Pin a version: append `@<tag>` to the source.
+- Install for one project only: add `-l` (writes `.pi/settings.json` instead of `~/.pi/agent/settings.json`).
+- Try it without installing: `pi -e git:github.com/therealvio/jabroni-skills`, or `pi -e ./` from a clone.
+
+### Load only some skills
+
+By default you get every skill. To pick, install as above, then open the settings file (`~/.pi/agent/settings.json`, or `.pi/settings.json` with `-l`). `pi install` adds the package as a plain string:
+
+```json
+{
+  "packages": ["git:github.com/therealvio/jabroni-skills"]
+}
+```
+
+Change that string to an object with a `skills` filter. Paths are relative to the repo root.
+
+Only the `commit` skill:
+
+```json
+{
+  "packages": [
+    {
+      "source": "git:github.com/therealvio/jabroni-skills",
+      "skills": ["plugins/jabroni-commit/skills/*"]
+    }
+  ]
+}
+```
+
+Everything except `create-pr`:
+
+```json
+{
+  "packages": [
+    {
+      "source": "git:github.com/therealvio/jabroni-skills",
+      "skills": ["!plugins/jabroni-create-pr/**"]
+    }
+  ]
+}
+```
+
+To take more skills, add more paths to `skills`. Restart Pi or run `/reload` to apply.
+
+Manage it:
+
+```
+pi update --extensions                              # update all packages
+pi list                                             # show configured packages
+pi remove git:github.com/therealvio/jabroni-skills  # remove
+```
+
+Run a skill with `/skill:<name>`, for example `/skill:commit`.
+
+## Available skills
+
+| Skill       | Claude plugin       | Description                                                     |
+| ----------- | ------------------- | --------------------------------------------------------------- |
+| `commit`    | `jabroni-commit`    | Create git commits following Conventional Commits specification |
+| `create-pr` | `jabroni-create-pr` | Draft and create a GitHub PR using a template, via gh-axi       |
+
+`create-pr` needs `gh-axi` on your `PATH`, in either harness.
 
 ## Add a skill
 
@@ -38,11 +106,14 @@ claude plugin install jabroni-create-pr@jabroni-skills
 4. Add the plugin to `.claude-plugin/marketplace.json`.
 5. `/plugin marketplace update jabroni-skills` (or reinstall) to pick up changes.
 
+Pi needs no manifest change. It finds every skill under `plugins/*/skills`.
+
 ## Layout
 
 ```
-.claude-plugin/marketplace.json       # marketplace manifest, lists all plugins
+package.json                          # Pi package manifest (`pi` field)
+.claude-plugin/marketplace.json       # Claude marketplace manifest, lists all plugins
 plugins/jabroni-<skill-name>/
-  .claude-plugin/plugin.json          # plugin manifest
+  .claude-plugin/plugin.json          # Claude plugin manifest
   skills/<skill-name>/SKILL.md        # the skill itself
 ```

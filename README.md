@@ -91,10 +91,10 @@ Run a skill with `/skill:<name>`, for example `/skill:commit`.
 
 ## Available skills
 
-| Skill       | Claude plugin       | Description                                                     |
-| ----------- | ------------------- | --------------------------------------------------------------- |
-| `commit`    | `jabroni-commit`    | Create git commits following Conventional Commits specification |
-| `create-pr` | `jabroni-create-pr` | Draft and create a GitHub PR using a template, via gh-axi       |
+| Skill       | Claude plugin       | Description                                                                           |
+| ----------- | ------------------- | ------------------------------------------------------------------------------------- |
+| `commit`    | `jabroni-commit`    | Create git commits following Conventional Commits specification                       |
+| `create-pr` | `jabroni-create-pr` | Draft and create a GitHub PR using the repo template or a bundled default, via gh-axi |
 
 `create-pr` needs `gh-axi` on your `PATH`, in either harness.
 

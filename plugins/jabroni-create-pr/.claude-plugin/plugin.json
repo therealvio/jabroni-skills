@@ -1,7 +1,7 @@
 {
   "name": "jabroni-create-pr",
   "displayName": "Jabroni Create PR",
-  "description": "Draft and create a GitHub PR using the team template, via gh-axi",
+  "description": "Draft and create a GitHub PR using the repo template or a bundled default, via gh-axi",
   "author": {
     "name": "therealvio"
   }

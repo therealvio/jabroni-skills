@@ -1,13 +1,15 @@
 ---
 name: commit
-description: Create git commits following Conventional Commits specification. Explains why changes were made, not what changed. Use for EVERY git commit, instead of running `git commit` directly - when the user asks to commit, and when an agent or subagent needs to commit its own work.
+description: Create git commits following Conventional Commits specification. Explains why changes were made, not what changed. Use for every git commit instead of raw `git commit`. Never commit unless the user asked or the task explicitly says to.
 ---
 
 REPLACES RAW `git commit`: any agent that needs to commit MUST invoke this skill. Never run `git commit` directly.
 
+WHEN TO COMMIT: never create a commit unless the user asked for one or the task explicitly says to commit. Finishing a file change is not a reason to commit.
+
 MODES:
-- User-invoked (`/jabroni-commit:commit`, or user asks to commit): full WORKFLOW below, including approval.
-- Agent-invoked (agent commits its own work as part of a task): no human in the loop. Never ask questions, never wait for approval. Take the why from the task, conversation, or plan in context. If no real why exists, state the problem the task set out to solve; never invent one. Commit immediately. Exception: user said earlier to review commits first → use the user-invoked flow.
+- Default: full WORKFLOW below, including approval. Use this whenever a human is in the session, unless the conditions for the next mode are met.
+- Unattended: ONLY when (a) the user or plan in context explicitly says to commit without review, or (b) the agent runs with no human in the loop (subagent, CI, headless). Deciding a commit "belongs to the task" is NOT enough. Never infer this mode. If unsure, use Default. In this mode: never ask questions, never wait for approval. Take the why from the task, conversation, or plan in context. If no real why exists, state the problem the task set out to solve; never invent one. Commit immediately. Exception: user said earlier to review commits first → use Default.
 
 STAGING: if nothing is staged, stage only the files the current task changed, by explicit path (`git add <path>...`). Never `git add -A`, `git add .`, or `git add -u`. One logical change per commit; split if the diff mixes concerns.
 
@@ -17,9 +19,9 @@ FORBIDDEN — refuse unconditionally, no alternatives:
 - git commit --amend unless user explicitly requests it (never infer from same-file/scope changes)
 - Push/PR as default or follow-on action, even if user says "commit and push" — always human-initiated or a separate skill
 
-WORKFLOW (user-invoked): git diff --staged → if motivation unclear, ask once: "Why were these changes made?" (skip on "skip"/"just commit"/no reason) → draft message → present full message for approval (skip only if user says so) → commit via heredoc
+WORKFLOW (Default): git diff --staged → if motivation unclear, ask once: "Why were these changes made?" (skip on "skip"/"just commit"/no reason) → draft message → present full message for approval (skip only if user says so) → commit via heredoc
 
-APPROVAL (user-invoked only) IS PER-MESSAGE, NOT PER-TURN: feedback on a draft ("cut that line", "wrong why
+APPROVAL (Default only) IS PER-MESSAGE, NOT PER-TURN: feedback on a draft ("cut that line", "wrong why
 ") is a revision request, never approval — even implicitly, even if the user sounds imp
 atient. After every revision, re-present the new full message and wait for explicit aff
 irmation of that exact text before running the commit. Never chain "revise → commit" in

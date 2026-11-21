@@ -11,9 +11,11 @@ An agent skill for creating well-structured git commits. Enforces Conventional C
 
 The agent will inspect staged changes, infer motivation from conversation context, and produce a commit.
 
-The skill is also **agent-invocable** and replaces raw `git commit`. Agents and subagents that need to commit their own work must call this skill. In that mode no human is present, so the skill skips the motivation question and the approval step. It takes the why from the task context, stages only the files the task changed (by explicit path), and commits. To review commits first, tell the agent so and the interactive flow applies.
+The skill replaces raw `git commit`. Agents must call it for every commit, and must never commit unless you asked or the task explicitly says to commit.
 
-## What it does (user-invoked)
+By default the skill shows the draft and waits for your approval. It skips approval (**Unattended** mode) only when you or a plan explicitly say to commit without review, or when no human is in the loop (subagent, CI, headless). An agent deciding a commit "belongs to the task" is not enough. In Unattended mode the skill takes the why from the task context, stages only the files the task changed (by explicit path), and commits.
+
+## What it does (Default mode)
 
 1. Runs `git diff --staged` to understand the change
 2. Uses conversation context, issue references, and surrounding code to determine *why* the change was made
